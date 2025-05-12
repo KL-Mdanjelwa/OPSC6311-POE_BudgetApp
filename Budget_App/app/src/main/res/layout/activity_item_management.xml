@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#15F8C3">
+
+
+    <LinearLayout
+        android:padding="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/expenseNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Expense Name" />
+
+        <EditText
+            android:id="@+id/descriptionEditText"
+            android:layout_width="371dp"
+            android:layout_height="81dp"
+            android:hint="Description" />
+
+        <Button
+            android:id="@+id/dateBtn"
+            android:text="Select Date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/startTimeBtn"
+            android:text="Start Time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/endTimeBtn"
+            android:text="End Time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:id="@+id/categorySpinner"
+            android:layout_width="381dp"
+            android:layout_height="67dp" />
+
+
+
+        <Button
+            android:id="@+id/upBtn"
+            android:text="Upload Photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/spentEditText"
+            android:layout_width="384dp"
+            android:layout_height="72dp"
+            android:hint="How much spent"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Expense" />
+
+        <Button
+            android:id="@+id/canceloBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Go Back" />
+
+
+    </LinearLayout>
+</ScrollView>
