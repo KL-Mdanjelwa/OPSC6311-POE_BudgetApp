@@ -1,7 +1,6 @@
 package com.example.budget_app.activities
 
 import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -17,7 +16,6 @@ import com.example.budget_app.R
 import com.example.budget_app.data.BudgetDatabase
 import com.example.budget_app.data.Expense
 import kotlinx.coroutines.launch
-import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -61,7 +59,7 @@ class Item_ManagementActivity : AppCompatActivity() {
         userId = intent.getLongExtra("USER_ID", 0L)
 
         db = BudgetDatabase.getDatabase(applicationContext)
-        val userId = intent.getLongExtra("userId", -1)
+
 
 
         categorySpinner = findViewById(R.id.categorySpinner)
@@ -101,15 +99,18 @@ class Item_ManagementActivity : AppCompatActivity() {
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             categorySpinner.adapter = adapter
+            if (categories.isEmpty()) {
+                Toast.makeText(this@Item_ManagementActivity, "No categories found", Toast.LENGTH_LONG).show()
+            }
             if (categories.isNotEmpty()) {
                 categoryId = categories[0].categoryId
             }
-            categorySpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            categorySpinner.onItemSelectedListener=object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: android.view.View, position: Int, id: Long) {
                     categoryId = categories[position].categoryId
                 }
                 override fun onNothingSelected(parent: AdapterView<*>) {}
-            })
+            }
         }
 
         // Date Picker
@@ -190,6 +191,7 @@ class Item_ManagementActivity : AppCompatActivity() {
                 }
             }
         }
+
     }
     private fun selectImage() {
         imagePicker.launch("image/*")

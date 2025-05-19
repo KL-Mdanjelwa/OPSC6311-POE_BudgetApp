@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_section_title2"
+        android:title="Inserts"
+        android:enabled="false"
+        android:icon="@android:color/transparent" />
+    <item
+        android:id="@+id/nav_category"
+        android:title="Category" />
+    <item
+        android:id="@+id/nav_item"
+        android:title="Item" />
+    <item
+        android:id="@+id/menu_section_title"
+        android:title="Display Options Below"
+        android:enabled="false"
+        android:icon="@android:color/transparent" />
+    <item
+        android:id="@+id/nav_item_category"
+        android:title="Item Category" />
+    <item
+        android:id="@+id/nav_item_category_spent"
+        android:title="Item Category Spent" />
+    <item
+        android:id="@+id/nav_item_expense"
+        android:title="Item Expense" />
+</menu>
+
+
