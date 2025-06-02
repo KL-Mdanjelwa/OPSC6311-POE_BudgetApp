@@ -10,8 +10,6 @@ data class Expense(
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "spent") val spent: Double,
     @ColumnInfo(name = "date") val date: Long, // Store as selected date
-    @ColumnInfo(name = "start_time") val startDate: Long,
-    @ColumnInfo(name = "end_time") val endDate: Long,
     @ColumnInfo(name = "category_id") val categoryId: Long,
     @ColumnInfo(name = "description") val description: String,
     @ColumnInfo(name = "user_id") val userId: Long, // Link to User,

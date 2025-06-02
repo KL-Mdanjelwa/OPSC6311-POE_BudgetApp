@@ -27,18 +27,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <Button
-            android:id="@+id/startTimeBtn"
-            android:text="Start Time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <Button
-            android:id="@+id/endTimeBtn"
-            android:text="End Time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
         <Spinner
             android:id="@+id/categorySpinner"
             android:layout_width="match_parent"
@@ -51,6 +39,12 @@
             android:text="Upload Photo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/previewImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"/>
 
         <EditText
             android:id="@+id/spentEditText"
@@ -69,7 +63,7 @@
             android:id="@+id/canceloBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cancel" />
+            android:text="Go Back" />
 
 
     </LinearLayout>

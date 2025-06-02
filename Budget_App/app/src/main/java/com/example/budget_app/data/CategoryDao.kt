@@ -18,4 +18,7 @@ interface CategoryDao {
 
     @Update
     suspend fun updateCategory(category: Category)
+
+    @Query("SELECT COUNT(*) FROM categories WHERE user_id = :userId")
+    suspend fun getCategoryCountForUser(userId: String): Int
 }

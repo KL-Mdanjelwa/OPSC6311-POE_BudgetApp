@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/reward_background"
+    android:padding="12dp"
+    android:layout_marginBottom="8dp"
+    android:elevation="2dp">
+
+    <TextView
+        android:id="@+id/rewardTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reward Title"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#333" />
+
+    <TextView
+        android:id="@+id/rewardDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reward description goes here."
+        android:textSize="14sp"
+        android:textColor="#666" />
+
+    <TextView
+        android:id="@+id/rewardStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:textSize="12sp"
+        android:textColor="#888"
+        android:paddingTop="4dp" />
+</LinearLayout>

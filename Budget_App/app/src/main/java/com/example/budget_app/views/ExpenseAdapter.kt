@@ -1,14 +1,14 @@
 import android.graphics.BitmapFactory
-import android.util.Log
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.budget_app.R
 import com.example.budget_app.data.Expense
-import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -41,14 +41,21 @@ class ExpenseAdapter : RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>() 
         holder.expenseAmount.text = "$${expense.spent}"
         holder.expenseDate.text = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             .format(Date(expense.date))
-        Log.d("ImageDebug", "Image path: ${expense.imagePath}")// To log what type of file this is
-        // Load image from file path
+
         if (!expense.imagePath.isNullOrEmpty()) {
-            val file = File(expense.imagePath)
-            if (file.exists()) {
-                val bitmap = BitmapFactory.decodeFile(file.absolutePath)
-                holder.expenseImage.setImageBitmap(bitmap)
-            } else {
+            val context = holder.itemView.context
+            try {
+                val uri = Uri.parse(expense.imagePath)
+                val inputStream = context.contentResolver.openInputStream(uri)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                inputStream?.close()
+                if (bitmap != null) {
+                    holder.expenseImage.setImageBitmap(bitmap)
+                } else {
+                    holder.expenseImage.setImageResource(R.drawable.logo) // fallback
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
                 holder.expenseImage.setImageResource(R.drawable.logo) // fallback
             }
         } else {

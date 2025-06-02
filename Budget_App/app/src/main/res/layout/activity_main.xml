@@ -12,6 +12,7 @@
         android:id="@+id/textView3"
         android:layout_width="166dp"
         android:layout_height="50dp"
+        android:textColor="@color/black"
         android:text="Register"
         android:textAlignment="center"
         android:textSize="34sp"
@@ -39,6 +40,7 @@
         android:id="@+id/textView"
         android:layout_width="149dp"
         android:layout_height="42dp"
+        android:textColor="@color/black"
         android:text="Username"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -55,6 +57,7 @@
         android:ems="10"
         android:hint="Username"
         android:inputType="text"
+        android:textColor="@color/black"
 
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,6 +70,7 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"
         android:text="Password"
         android:textAlignment="center"
@@ -84,6 +88,7 @@
         android:ems="10"
         android:hint="Password"
         android:textAlignment="center"
+        android:textColor="@color/black"
 
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -96,6 +101,7 @@
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"
         android:text="Confirm Password"
         android:textAlignment="center"
@@ -113,6 +119,7 @@
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="text"
+        android:textColor="@color/black"
 
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"

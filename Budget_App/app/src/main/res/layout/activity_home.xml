@@ -22,17 +22,20 @@
             app:title="Home"
             app:menu="@menu/home_menu" />
 
+
         <!-- ScrollView for Sections -->
         <androidx.core.widget.NestedScrollView
             android:id="@+id/mainScrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <!-- Category Section -->
                 <LinearLayout
@@ -40,18 +43,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="12dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:elevation="4dp"
+                    android:layout_marginBottom="16dp"
+                    android:clipToPadding="false">
+
                     <TextView
                         android:id="@+id/textViewCategories"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Categories"
                         android:textSize="20sp"
-                        android:textAlignment="center"/>
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:paddingBottom="8dp" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/categoriesRecyclerView"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"/>
+                        android:layout_height="150dp"
+                        android:scrollbars="vertical" />
                 </LinearLayout>
 
                 <!-- Expense Section -->
@@ -60,19 +72,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="12dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:elevation="4dp"
+                    android:layout_marginBottom="16dp"
+                    android:clipToPadding="false">
 
                     <TextView
                         android:id="@+id/textViewExpenses"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Total Per Category"
-                        android:textAlignment="center"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:paddingBottom="8dp" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/categorySpendRecyclerView"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"/>
+                        android:layout_height="150dp"
+                        android:scrollbars="vertical" />
                 </LinearLayout>
 
                 <!-- Total Section -->
@@ -81,18 +101,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="12dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:elevation="4dp"
+                    android:clipToPadding="false">
+
                     <TextView
                         android:id="@+id/textViewTotals"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Expenses"
                         android:textSize="20sp"
-                        android:textAlignment="center"/>
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:paddingBottom="8dp" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/totalsRecyclerView"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"/>
+                        android:layout_height="150dp"
+                        android:scrollbars="vertical" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -103,54 +131,82 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:background="?attr/selectableItemBackground">
 
             <EditText
                 android:id="@+id/goalInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="INPUT YOUR BUDGET GOAL"
-                android:inputType="text"
-                android:textAlignment="center"
-                android:textSize="20sp"/>
+                android:hint="Input your budget goal"
+                android:inputType="numberDecimal"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:padding="8dp"
+                android:layout_marginBottom="16dp" />
 
             <Button
                 android:id="@+id/saveGoalButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Set Goal"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp" />
 
-            <Button
-                android:id="@+id/startDateButton"
-                android:layout_width="wrap_content"
+            <!-- Dates buttons in horizontal layout -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Start Date"
-                android:layout_gravity="center_horizontal"/>
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="16dp"
+                android:weightSum="2">
 
-            <Button
-                android:id="@+id/endDateButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="End Date"
-                android:layout_gravity="center_horizontal"/>
+                <Button
+                    android:id="@+id/startDateButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Start Date"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/endDateButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="End Date"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/filterButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Filter"
-                android:layout_gravity="center_horizontal"/>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floatBtn2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:contentDescription="TODO"
-                app:srcCompat="@drawable/add"/>
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp" />
 
         </LinearLayout>
+
+        <!-- Floating Action Button positioned bottom-end -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatBtn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:contentDescription="Add new item"
+            app:srcCompat="@drawable/add" />
+
+        <Button
+            android:id="@+id/rewardsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rewards"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"/>
+
     </LinearLayout>
 
     <!-- Navigation Drawer -->

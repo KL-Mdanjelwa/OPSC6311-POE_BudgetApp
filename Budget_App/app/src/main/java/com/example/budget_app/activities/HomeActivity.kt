@@ -3,6 +3,7 @@ package com.example.budget_app.activities
 import ExpenseAdapter
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.budget_app.R
 import com.example.budget_app.data.BudgetDatabase
 import com.example.budget_app.data.ExpenseDao
+import com.example.budget_app.helper.checkAndUnlockReward
 import com.example.budget_app.views.CategoryAdapter
 import com.example.budget_app.views.CategorySpendAdapter
 import com.example.budget_app.views.CategorySpentAdapter
@@ -72,6 +74,9 @@ class HomeActivity : AppCompatActivity() {
         expenseSection = findViewById(R.id.expenseSection)
         totalsSection = findViewById(R.id.totalsSection)
 
+
+
+
         // Navigation item actions
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -100,6 +105,7 @@ class HomeActivity : AppCompatActivity() {
         val goalInput = findViewById<EditText>(R.id.goalInput)
         val saveGoalButton = findViewById<Button>(R.id.saveGoalButton)
         val categoryBtn = findViewById<FloatingActionButton>(R.id.floatBtn2)
+
         startDateButton = findViewById(R.id.startDateButton)
         endDateButton = findViewById(R.id.endDateButton)
         filterButton = findViewById(R.id.filterButton)
@@ -143,6 +149,16 @@ class HomeActivity : AppCompatActivity() {
                 lifecycleScope.launch {
                     db.userDao().updateBudgetGoal(userId, amount)
                     Toast.makeText(this@HomeActivity, "Budget goal updated", Toast.LENGTH_SHORT).show()
+
+                }
+
+                lifecycleScope.launch {
+                    checkAndUnlockReward(
+                        this@HomeActivity,
+                        userId,
+                        "Goal Setter",
+                        "You set a budget goal!"
+                    )
                 }
             } else {
                 Toast.makeText(this@HomeActivity, "Please enter a valid number", Toast.LENGTH_SHORT).show()
@@ -155,6 +171,17 @@ class HomeActivity : AppCompatActivity() {
             intent.putExtra("userId", userId)
             startActivity(intent)
             finish()
+        }
+
+        val rewardsButton = findViewById<Button>(R.id.rewardsButton)
+        rewardsButton.setOnClickListener {
+            val sharedPrefs = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+            val userId = sharedPrefs.getLong("userId", -1)
+
+            val intent = Intent(this, RewardsActivity::class.java)
+            intent.putExtra("userId", userId)
+            startActivity(intent)
+
         }
 
         // Load goal from DB

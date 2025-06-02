@@ -2,6 +2,7 @@ package com.example.budget_app.activities
 
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
@@ -46,6 +47,11 @@ class LoginActivity : AppCompatActivity() {
                     val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                     intent.putExtra("userId", user.userId) // Important
                     intent.putExtra("username", user.username) // Also important
+                    val sharedPrefs = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+                    with(sharedPrefs.edit()) {
+                        putLong("userId", user.userId)
+                        apply()
+                    }
                     startActivity(intent)
                     finish()
                 } else {

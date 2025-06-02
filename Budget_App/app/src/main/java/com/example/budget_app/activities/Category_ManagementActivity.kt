@@ -13,8 +13,11 @@ import com.example.budget_app.R
 import com.example.budget_app.data.Category
 import com.example.budget_app.data.CategoryDao
 import com.example.budget_app.data.BudgetDatabase
+import com.example.budget_app.helper.checkAndUnlockReward
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.NumberFormat
 
 class Category_ManagementActivity : AppCompatActivity() {
@@ -111,6 +114,9 @@ class Category_ManagementActivity : AppCompatActivity() {
             val minGoalAmount = minGoalSeekBar.progress.toDouble()
             val maxGoalAmount = maxGoalSeekBar.progress.toDouble()
 
+
+
+
             if (categoryName.isEmpty() || categoryGoal == null || categoryLimit == null) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
             } else {
@@ -123,6 +129,15 @@ class Category_ManagementActivity : AppCompatActivity() {
                     maxGoal = maxGoalAmount
                 )
 
+
+                lifecycleScope.launch {
+                    checkAndUnlockReward(
+                        this@Category_ManagementActivity,
+                        userId,
+                        "Budget Builder",
+                        "You added your first category!"
+                    )
+                }
                 lifecycleScope.launch {
                     if (categoryId != -1L) {
                         categoryDao.updateCategory(category) // Update category if categoryId is valid
@@ -142,6 +157,17 @@ class Category_ManagementActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
+                    }
+                }
+                lifecycleScope.launch {
+                    // Check count and unlock category reward
+                    val db = BudgetDatabase.getDatabase(this@Category_ManagementActivity)
+                    val count = withContext(Dispatchers.IO) {
+                        db.categoryDao().getCategoriesByUser(userId).size
+                    }
+
+                    if (count > 5) {
+                        checkAndUnlockReward(this@Category_ManagementActivity, userId, "Budget Architect", "You've added over 5 categories!")
                     }
                 }
             }
